@@ -21,5 +21,6 @@ public class UserTest {
         User u = new User();
         u.setSex("女");
         System.out.println(userService.update(null,u));
+        System.out.println(123456);
     }
 }
