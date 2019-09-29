@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" >
+    <script type="text/javascript" th:src="@{/js/jquery2.1.4.js}" src="../static/js/jquery2.1.4.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           $(document).on("click",".delete",function () {
+               var $tr = $(this).parent().parent();
+               var $children = $tr.children();
+               var id = $($children[0]).text();
+               $.get("/delete",{"id":id},function (r) {
+                   if(r.code==1){
+                       alert("删除成功");
+                       window.location.href = "/selectAll";
+                   }else{
+                       alert("删除失败");
+                   }
+               });
+           });
+
+           $(document).on("click",".update",function () {
+               var $tr = $(this).parent().parent();
+               var $children = $tr.children();
+               var id = $($children[0]).text();
+               window.location.href = "/selectOne?id=" + id;
+           })
+        });
+    </script>
+</head>
+<body>
+    <table class="table table-bordered table-condensed table-hover table-responsive table-striped text-center">
+        <tr>
+            <td>编号</td>
+            <td >头像</td>
+            <td>用户名</td>
+            <td>密码</td>
+            <td>性别</td>
+            <td>年龄</td>
+            <td>创建时间</td>
+            <td>操作</td>
+        </tr>
+        <tr th:each="user:${list}">
+            <td class="id" th:text="${user.id}"></td>
+            <td><img th:src="${user.pic}" th:width="30px" th:height="30px"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.sex}"></td>
+            <td th:text="${user.age}"></td>
+            <td th:text="${user.createTime}"></td>
+            <td><button class="delete btn btn-danger">删除</button> <button class="update btn btn-warning">修改</button></td>
+        </tr>
+    </table>
+<hr>
+</body>
+</html>

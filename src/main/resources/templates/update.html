@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" >
+    <script type="text/javascript" th:src="@{/js/jquery2.1.4.js}" src="../static/js/jquery2.1.4.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+    <form action="#" th:action="@{/up}" enctype="multipart/form-data" method="post" th:object="${user}">
+        <input type="hidden" th:name="id" th:value="${user.id}">
+        用户名:<input type="text" th:name="username" th:value="${user.username}"><br>
+        密码  :<input type="password" th:name="password" th:value="${user.password}" ><br>
+        性别  :<input type="text" th:name="sex" th:value="${user.sex}"><br>
+        年龄  :<input type="text" th:name="age" th:value="${user.age}"><br>
+        创建时间:<input type="date" th:name="createTime" th:value="${user.createTime}"><br>
+        头像  :<input type="file" th:name="file" th:value="${user.pic}"><img th:src="${user.pic}" th:width="30px" th:height="30px"><br>
+        <input type="submit" th:value="确认修改">
+    </form>
+</body>
+</html>
